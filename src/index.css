@@ -1,3 +1,31 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --scrollbar-track: #f0f0f0; /* light gray background */
+  --scrollbar-thumb: #a0aec0; /* gray thumb */
+}
+
+.dark {
+  --scrollbar-track: #2d3748; /* dark bg */
+  --scrollbar-thumb: #718096; /* lighter gray thumb */
+}
+
+
+.tasks-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+
+.tasks-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.tasks-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 10px;
+  border: 2px solid var(--scrollbar-track);
+}
+
