@@ -11,7 +11,7 @@ const NavBar = () => {
     const navigate = useNavigate();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-10 w-full h-20 flex items-center justify-between px-6">
+    <nav className="relative z-10 w-full h-20 flex items-center justify-between px-6">
       <h1 className="text-[2rem] font-semibold text-gray-800 dark:text-white">Task Manager</h1>
 
       {/* Centered container */}
