@@ -1,28 +1,63 @@
 import React from 'react'
 
 const TaskDiv = () => {
+    const statusObject = [
+    {
+      status: "Pending",
+      color: ["bg-yellow-100", "text-yellow-700", "bg-yellow-500"]
+    },
+    {
+      status: "Completed",
+      color: ["bg-green-100", "text-green-700", "bg-green-500"]
+    },
+    {
+      status: "Expired",
+      color: ["bg-red-100", "text-red-700", "bg-red-500"]
+    }
+  ];
+  const status = statusObject[1].status;
+  const [bgColor, textColor, dotColor] = statusObject[1].color;
     return (
-        <div className="dark:bg-gray-700 p-4 rounded-lg shadow-lg transition duration-300 border border-gray-200 dark:border-gray-600 w-[99%]">
-            {/* Task Content */}
-            <h3 className="text-lg font-semibold text-gray-800 dark:text-white">Task Title</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Task description goes here.</p>
-            <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">Due: July 30, 2025</p>
 
-            {/* Action Buttons */}
-            <div className="mt-4 flex flex-wrap gap-2">
-                <button className="px-3 py-1 text-sm bg-green-500 text-white rounded hover:bg-green-600">
-                    Complete
-                </button>
-                <button className="px-3 py-1 text-sm bg-yellow-400 text-black rounded hover:bg-yellow-500">
-                    Incomplete
-                </button>
-                <button className="px-3 py-1 text-sm bg-gray-300 text-black rounded hover:bg-gray-400">
-                    Update
-                </button>
-                <button className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600">
-                    Delete
-                </button>
+
+        <div className='flex flex-col gap-5 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg transition duration-300 hover:shadow-xl w-full min-w-[300px] max-w-[400px] items-center justify-center min-h-[200px] max-h-[600px] cursor-pointer hover:scale-105'>
+
+            {/* Status */}
+
+            <div className="w-[95%] mb-2 p-2 rounded">
+                <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${bgColor} ${textColor} text-sm font-medium`}>
+          <span className={`h-2 w-2 rounded-full ${dotColor}`} />
+          {status}
+        </span>
             </div>
+
+
+            {/* Heading */}
+            <div className='w-[95%] h-30 flex items-center justify-center text-xl font-semibold text-gray-800 dark:text-white mb-2 rounded-md border border-gray-400 dark:border-blue-600 bg-gray-100 dark:bg-gray-700'>
+                Heading
+            </div>
+
+
+            {/* Description */}
+            <div className="w-[95%] overflow-hidden text-gray-600 dark:text-gray-300 mb-4 h-auto line-clamp-2">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus nulla sequi iste, laudantium sed consectetur sunt omnis praesentium quia, repellat mollitia beatae ex minus velit nobis dolore dolores atque dignissimos.
+            </div>
+
+
+            {/* Date */}
+            <div className='flex justify-between w-[95%] text-gray-600 dark:text-gray-300 mb-4'>
+                <span className='flex flex-col items-center'>
+                    <span className='text-sm text-gray-500 dark:text-gray-400'>Start Date</span>
+                    <span className='text-sm font-semibold text-gray-800 dark:text-white'>2023-10-01</span>
+                </span>
+                <span className='flex flex-col items-center'>
+                    <span className='text-sm text-gray-500 dark:text-gray-400'>End Date</span>
+                    <span className='text-sm font-semibold text-gray-800 dark:text-white'>2023-10-15
+                    </span>
+                </span>
+            </div>
+
+
         </div>
     )
 }
