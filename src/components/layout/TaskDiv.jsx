@@ -2,7 +2,7 @@ import React from 'react'
 
 const TaskDiv = () => {
     return (
-        <div className="dark:bg-gray-700 p-4 rounded-lg shadow-lg transition duration-300 border border-gray-200 dark:border-gray-600">
+        <div className="dark:bg-gray-700 p-4 rounded-lg shadow-lg transition duration-300 border border-gray-200 dark:border-gray-600 w-[99%]">
             {/* Task Content */}
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white">Task Title</h3>
             <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Task description goes here.</p>
