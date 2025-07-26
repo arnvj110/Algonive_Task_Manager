@@ -19,10 +19,20 @@ function App() {
   }, []);
 
   const router = createBrowserRouter([
-    // Auto-redirect from "/" to "/app/dashboard"
+    // Auto-redirect from "/" to "/app/tasks"
     {
       path: '/',
       element: <Navigate to="/app/tasks" replace />,
+    },
+    // Tasks route (now effectively the home route)
+    {
+      path: '/app/tasks',
+      element: (
+        <div className='bg-gray-100 dark:bg-gray-900 min-h-screen'>
+          <NavBar />
+          <TasksPage />
+        </div>
+      ),
     },
     // Dashboard route
     {
@@ -31,16 +41,6 @@ function App() {
         <div className='bg-gray-100 dark:bg-gray-900 min-h-screen'>
           <NavBar />
           <DashboardPage />
-        </div>
-      ),
-    },
-    // Tasks route
-    {
-      path: '/app/tasks',
-      element: (
-        <div className='bg-gray-100 dark:bg-gray-900 min-h-screen'>
-          <NavBar />
-          <TasksPage />
         </div>
       ),
     },

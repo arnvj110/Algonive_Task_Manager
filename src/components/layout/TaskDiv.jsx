@@ -25,7 +25,7 @@ const TaskDiv = ({ task }) => {
     <div
       className="group flex flex-col gap-5 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg transition duration-300 hover:shadow-xl
       w-full min-w-[300px] max-w-[400px] items-center justify-center min-h-[200px] max-h-[600px] cursor-pointer hover:scale-105"
-      onClick={() => navigate(`/task/${task.id}`)}
+      onClick={() => navigate(`/app/task/${task.id}`)}
     >
       {/* Top Row: Status + Action */}
       <div className="w-[95%] mb-2 p-2 flex justify-between items-center">

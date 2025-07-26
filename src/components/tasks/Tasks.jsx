@@ -48,7 +48,7 @@ const Tasks = () => {
 
         {/* Add Task Button */}
         <button
-          onClick={() => navigate('/add')}
+          onClick={() => navigate('/app/add')}
           className="px-4 py-2 rounded-md text-base font-medium cursor-pointer transition-all duration-300
             bg-red-400 text-white shadow-lg scale-105 hover:scale-110 hover:shadow-md"
         >

@@ -67,7 +67,7 @@ const AddPage = () => {
     });
 
     // Redirect to the home page or any other desired route after successful submission.
-    navigate('/tasks');
+    navigate('/app/tasks');
     window.location.reload();
   };
 

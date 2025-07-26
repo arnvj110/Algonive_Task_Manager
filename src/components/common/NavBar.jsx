@@ -6,9 +6,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const NavBar = () => {
 
     const location = useLocation();
-    const isDashPage = location.pathname === '/';
-    const isTasksPage = location.pathname === '/tasks';
-    const isAddTaskPage = location.pathname === '/add';
+    const isDashPage = location.pathname === '/app/dashboard';
+    const isTasksPage = location.pathname === '/app/tasks';
+    const isAddTaskPage = location.pathname === '/app/add';
     const navigate = useNavigate();
 
   return (
@@ -24,7 +24,7 @@ const NavBar = () => {
      cursor-pointer
     hover:shadow-lg hover:shadow-blue-500/50 ${isDashPage ? 'scale-110' : ''}`}
     onClick={() => {
-        navigate('/')
+        navigate('/app/dashboard')
     }}
 >
   Dashboard
@@ -38,7 +38,7 @@ const NavBar = () => {
      cursor-pointer
     hover:shadow-lg hover:shadow-blue-500/50 ${isTasksPage ? 'scale-110' : ''}`}
     onClick={() => {
-        navigate('/tasks')
+        navigate('/app/tasks')
         }}
 >
   Tasks
@@ -50,7 +50,7 @@ const NavBar = () => {
      cursor-pointer
     hover:shadow-lg hover:shadow-blue-500/50 ${isAddTaskPage ? 'scale-110' : ''}`}
     onClick={() => {
-        navigate('/add')
+        navigate('/app/add')
         }}
 >
   Add Task
