@@ -27,13 +27,13 @@ const TaskViewPage = () => {
   };
 
   const determineStatus = (task) => {
-    if (task.isCompleted) return 'completed';
+    if (task.status === "completed") return 'completed';
 
     const now = new Date();
     const end = new Date(task.endDate);
     return end < now ? 'expired' : 'pending';
   };
-
+  console.log(form);
   const handleUpdateClick = () => {
     if (isEditing) {
       if (new Date(form.endDate) < new Date(form.startDate)) {
@@ -146,7 +146,7 @@ const TaskViewPage = () => {
             <input
               type="checkbox"
               name="isCompleted"
-              checked={form.isCompleted}
+              checked={form.status === 'completed'}
               onChange={handleChange}
               disabled={!isEditing}
               className="w-5 h-5 accent-green-500 cursor-pointer"

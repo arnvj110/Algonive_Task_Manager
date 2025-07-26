@@ -16,7 +16,7 @@ const TaskDiv = ({ task }) => {
 
   const handleMarkAsCompleted = (e) => {
     e.stopPropagation(); // prevent card navigation
-    const updatedTask = { ...task, status: 'completed', isCompleted: true };
+    const updatedTask = { ...task, status: 'completed' };
     updateTask(updatedTask);
     setStatus('completed');
     // window.location.reload(); // reload to reflect change (you can also lift state instead)
