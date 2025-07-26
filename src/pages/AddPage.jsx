@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { addTask } from '../utils/localStorage'; // Make sure this path is correct
+import { useNavigate } from 'react-router-dom';
 
 const AddPage = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     title: '',
     description: '',
@@ -65,7 +67,8 @@ const AddPage = () => {
     });
 
     // Redirect to the home page or any other desired route after successful submission.
-    window.location.href = '/tasks';
+    navigate('/tasks');
+    window.location.reload();
   };
 
   const today = new Date().toISOString().split('T')[0];
