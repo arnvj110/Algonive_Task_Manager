@@ -1,16 +1,29 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
-import HomePage from './pages/HomePage'
+
 import AddPage from './pages/AddPage'
-import UpdatePage from './pages/UpdatePage'
-import DeletePage from './pages/DeletePage'
+
 import { ThemeProvider } from './context/ThemeContext'
 import TasksPage from './pages/TasksPage'
 import NavBar from './components/common/NavBar'
 
 import TaskViewPage from './pages/TaskViewPage'
+import { checkAndUpdateExpiredTasks } from './utils/localStorage'
+import { useEffect } from 'react'
+import DashboardPage from './pages/DashboardPage'
 
 function App() {
+  
+  useEffect(() => {
+    
+    checkAndUpdateExpiredTasks();
+
+    const interval = setInterval(() => {
+      checkAndUpdateExpiredTasks();
+    }, 60000);
+  
+    return () => clearInterval(interval);
+  }, []);
   
 
   const router = createBrowserRouter([
@@ -18,7 +31,7 @@ function App() {
       path: '/',
       element: <div className='bg-gray-100 dark:bg-gray-900 min-h-screen'>
         <NavBar />
-        <HomePage />
+        <DashboardPage />
 
         </div>
 
@@ -40,28 +53,15 @@ function App() {
         </div>
   },
   {
-    path: '/update/:taskId',
-    element: <div className='bg-gray-100 dark:bg-gray-900 min-h-screen'>
-        <NavBar />
-        <UpdatePage />
-
-        </div>
-  },
-  {
-    path: '/delete/:taskId',
-    element: <div className='bg-gray-100 dark:bg-gray-900 min-h-screen'>
-        <NavBar />
-        <DeletePage />
-
-        </div>
-  }, {
     path: '/task/:id',
     element: <div className='bg-gray-100 dark:bg-gray-900 min-h-screen'>
       <NavBar />
       <TaskViewPage task={{title:'test', description:'test'}} />
     </div>
   }
-])
+]);
+
+
 
   return (
     <ThemeProvider>

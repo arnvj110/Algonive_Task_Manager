@@ -1,13 +1,14 @@
 import React from 'react';
 import ThemeToggle from './ThemeToggle';
 import { useLocation, useNavigate } from 'react-router-dom';
-import HomePage from '../../pages/HomePage';
+
 
 const NavBar = () => {
 
     const location = useLocation();
-    const isHomePage = location.pathname === '/';
+    const isDashPage = location.pathname === '/';
     const isTasksPage = location.pathname === '/tasks';
+    const isAddTaskPage = location.pathname === '/add';
     const navigate = useNavigate();
 
   return (
@@ -21,12 +22,12 @@ const NavBar = () => {
     hover:border-b-2 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400
     transition-all duration-300 ease-in-out
      cursor-pointer
-    hover:shadow-lg hover:shadow-blue-500/50 ${isHomePage ? 'scale-110' : ''}`}
+    hover:shadow-lg hover:shadow-blue-500/50 ${isDashPage ? 'scale-110' : ''}`}
     onClick={() => {
         navigate('/')
     }}
 >
-  Home
+  Dashboard
 </span>
 
 
@@ -41,6 +42,18 @@ const NavBar = () => {
         }}
 >
   Tasks
+</span>
+<span
+  className={`border border-gray-300 rounded-lg px-4 py-2 shadow-md bg-white dark:bg-gray-800 text-gray-700 text-xl font-bold dark:text-gray-300
+    hover:border-b-2 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400
+    transition-all duration-300 ease-in-out
+     cursor-pointer
+    hover:shadow-lg hover:shadow-blue-500/50 ${isAddTaskPage ? 'scale-110' : ''}`}
+    onClick={() => {
+        navigate('/add')
+        }}
+>
+  Add Task
 </span>
 
 

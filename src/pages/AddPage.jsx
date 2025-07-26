@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { addTask } from '../utils/localStorage'; // Make sure this path is correct
 
 const AddPage = () => {
   const [form, setForm] = useState({
@@ -18,13 +19,63 @@ const AddPage = () => {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Basic validation
+    if (!form.title.trim() || !form.description.trim()) {
+      alert('Please fill in both title and description.');
+      return;
+    }
+
+    if (!form.startDate || !form.endDate) {
+      alert('Please select both start and end dates.');
+      return;
+    }
+
+    const start = new Date(form.startDate);
+    const end = new Date(form.endDate);
+
+    if (end < start) {
+      alert('End date cannot be earlier than start date.');
+      return;
+    }
+
+    const newTask = {
+      id: Date.now(), // Simple unique ID
+      title: form.title,
+      desc: form.description,
+      startDate: form.startDate,
+      endDate: form.endDate,
+      priority: form.priority,
+      status: form.isCompleted ? 'completed' : 'pending',
+    };
+
+    addTask(newTask);
+    alert('Task added successfully!');
+
+    // Reset form
+    setForm({
+      title: '',
+      description: '',
+      startDate: '',
+      endDate: '',
+      priority: 'P1',
+      isCompleted: false,
+    });
+
+    // Redirect to the home page or any other desired route after successful submission.
+    window.location.href = '/tasks';
+  };
+
+  const today = new Date().toISOString().split('T')[0];
+
   return (
     <div className="mt-2 max-w-2xl mx-auto p-6 bg-white shadow-xl rounded-xl dark:bg-gray-800 dark:text-white">
       {/* Page Heading */}
       <h2 className="text-2xl font-bold text-center mb-6">Add New Task</h2>
 
-      <form className="space-y-5">
-
+      <form className="space-y-5" onSubmit={handleSubmit}>
         {/* Title */}
         <div>
           <label className="block font-semibold mb-1">Title</label>
@@ -46,7 +97,7 @@ const AddPage = () => {
             value={form.description}
             onChange={handleChange}
             placeholder="Enter task description"
-            className="tasks-scrollbar w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 dark:border-blue-500 dark:focus:border-blue-400"
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 dark:border-blue-500 dark:focus:border-blue-400"
             rows="4"
           ></textarea>
         </div>
@@ -71,6 +122,7 @@ const AddPage = () => {
               name="endDate"
               value={form.endDate}
               onChange={handleChange}
+              min={form.startDate}
               className="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 dark:border-blue-500 dark:focus:border-blue-400"
             />
           </div>
@@ -115,7 +167,6 @@ const AddPage = () => {
             Add Task
           </button>
         </div>
-
       </form>
     </div>
   );
