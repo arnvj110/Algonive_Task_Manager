@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getTaskById, updateTask, deleteTask } from '../utils/localStorage';
+import { handleSuccess } from '../components/common/toastFun';
 
 const TaskViewPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [form, setForm] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  console.log(form);
+
   useEffect(() => {
     const task = getTaskById(Number(id));
     if (task) {
@@ -20,20 +21,29 @@ const TaskViewPage = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setForm({
-      ...form,
-      [name]: type === 'checkbox' ? checked : value,
-    });
+
+    // If the status checkbox is toggled, update the form.status accordingly
+    if (name === 'status') {
+      setForm({
+        ...form,
+        status: checked ? 'completed' : 'pending',
+      });
+    } else {
+      setForm({
+        ...form,
+        [name]: type === 'checkbox' ? checked : value,
+      });
+    }
   };
 
   const determineStatus = (task) => {
-    if (task.status === "completed") return 'completed';
+    if (task.status === 'completed') return 'completed';
 
     const now = new Date();
     const end = new Date(task.endDate);
     return end < now ? 'expired' : 'pending';
   };
-  console.log(form);
+
   const handleUpdateClick = () => {
     if (isEditing) {
       if (new Date(form.endDate) < new Date(form.startDate)) {
@@ -43,11 +53,11 @@ const TaskViewPage = () => {
 
       const updatedTask = {
         ...form,
-        status: determineStatus(form),
+        status: determineStatus(form), // Ensure status is updated on save
       };
 
       updateTask(updatedTask);
-      alert('Task updated!');
+      handleSuccess('Task Updated Successfully!');
     }
 
     setIsEditing(!isEditing);
@@ -57,6 +67,7 @@ const TaskViewPage = () => {
     if (window.confirm('Are you sure you want to delete this task?')) {
       deleteTask(Number(id));
       navigate('/');
+      handleSuccess('Task Deleted Successfully!');
     }
   };
 
@@ -67,7 +78,6 @@ const TaskViewPage = () => {
       <h2 className="text-2xl font-bold text-center mb-6">Task Details</h2>
 
       <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-
         {/* Title */}
         <div>
           <label className="block font-semibold mb-1">Title</label>
@@ -145,7 +155,7 @@ const TaskViewPage = () => {
           <div className="flex gap-3 items-center justify-center">
             <input
               type="checkbox"
-              name="isCompleted"
+              name="status"
               checked={form.status === 'completed'}
               onChange={handleChange}
               disabled={!isEditing}

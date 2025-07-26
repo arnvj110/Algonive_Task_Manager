@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { addTask } from '../utils/localStorage'; // Make sure this path is correct
 import { useNavigate } from 'react-router-dom';
+import { handleSuccess } from '../components/common/toastFun';
 
 const AddPage = () => {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ const AddPage = () => {
     };
 
     addTask(newTask);
-    alert('Task added successfully!');
+    handleSuccess("New Task Added Successfully!");
 
     // Reset form
     setForm({
@@ -68,6 +69,8 @@ const AddPage = () => {
 
     // Redirect to the home page or any other desired route after successful submission.
     navigate('/app/tasks');
+
+    
     // window.location.reload();
   };
 

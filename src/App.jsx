@@ -8,6 +8,7 @@ import TaskViewPage from './pages/TaskViewPage';
 import { checkAndUpdateExpiredTasks } from './utils/localStorage';
 import { useEffect } from 'react';
 import DashboardPage from './pages/DashboardPage';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   useEffect(() => {
@@ -74,6 +75,7 @@ function App() {
   return (
     <ThemeProvider>
       <RouterProvider router={router} />
+      <ToastContainer />
     </ThemeProvider>
   );
 }

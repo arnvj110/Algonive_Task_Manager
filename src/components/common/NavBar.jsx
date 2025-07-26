@@ -22,7 +22,7 @@ const NavBar = () => {
     hover:border-b-2 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400
     transition-all duration-300 ease-in-out
      cursor-pointer
-    hover:shadow-lg hover:shadow-blue-500/50 ${isDashPage ? 'scale-110' : ''}`}
+    hover:shadow-lg hover:shadow-blue-500/50 ${isDashPage ? 'scale-110 shadow-lg shadow-blue-500' : ''}`}
     onClick={() => {
         navigate('/app/dashboard')
     }}
@@ -36,7 +36,7 @@ const NavBar = () => {
     hover:border-b-2 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400
     transition-all duration-300 ease-in-out
      cursor-pointer
-    hover:shadow-lg hover:shadow-blue-500/50 ${isTasksPage ? 'scale-110' : ''}`}
+    hover:shadow-lg hover:shadow-blue-500/50 ${isTasksPage ? 'scale-110 shadow-lg shadow-blue-500' : ''}`}
     onClick={() => {
         navigate('/app/tasks')
         }}
@@ -48,7 +48,7 @@ const NavBar = () => {
     hover:border-b-2 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400
     transition-all duration-300 ease-in-out
      cursor-pointer
-    hover:shadow-lg hover:shadow-blue-500/50 ${isAddTaskPage ? 'scale-110' : ''}`}
+    hover:shadow-lg hover:shadow-blue-500/50 ${isAddTaskPage ? 'scale-110 shadow-lg shadow-blue-500' : ''}`}
     onClick={() => {
         navigate('/app/add')
         }}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { updateTask } from '../../utils/localStorage'; // adjust this import if needed
+import { handleSuccess } from '../common/toastFun';
 
 const TaskDiv = ({ task }) => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const TaskDiv = ({ task }) => {
     const updatedTask = { ...task, status: 'completed' };
     updateTask(updatedTask);
     setStatus('completed');
+    handleSuccess('Task Completed!');
     // window.location.reload(); // reload to reflect change (you can also lift state instead)
   };
 
@@ -37,7 +39,7 @@ const TaskDiv = ({ task }) => {
         </span>
 
         {/* Mark as Completed Button (appears on hover) */}
-        {task.status !== 'completed' && (
+        {status !== 'completed' && (
           <button
             onClick={handleMarkAsCompleted}
             className="scale-0 group-hover:scale-100 transition-transform duration-300 origin-right text-xs bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-full shadow-md cursor-pointer hover:scale-105 text-[1.1rem]"
