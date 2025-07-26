@@ -8,6 +8,8 @@ import { ThemeProvider } from './context/ThemeContext'
 import TasksPage from './pages/TasksPage'
 import NavBar from './components/common/NavBar'
 
+import TaskViewPage from './pages/TaskViewPage'
+
 function App() {
   
 
@@ -52,6 +54,12 @@ function App() {
         <DeletePage />
 
         </div>
+  }, {
+    path: '/task/:id',
+    element: <div className='bg-gray-100 dark:bg-gray-900 min-h-screen'>
+      <NavBar />
+      <TaskViewPage task={{title:'test', description:'test'}} />
+    </div>
   }
 ])
 
