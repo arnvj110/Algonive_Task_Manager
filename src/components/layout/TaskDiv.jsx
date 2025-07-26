@@ -1,24 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { updateTask } from '../../utils/localStorage'; // adjust this import if needed
 
 const TaskDiv = ({ task }) => {
   const navigate = useNavigate();
-
+  const [status, setStatus] = useState(task.status?.toLowerCase());
   const statusMap = {
     pending: ['bg-yellow-100', 'text-yellow-700', 'bg-yellow-500'],
     completed: ['bg-green-100', 'text-green-700', 'bg-green-500'],
     expired: ['bg-red-100', 'text-red-700', 'bg-red-500'],
   };
 
-  const status = task.status?.toLowerCase();
+  
   const [bgColor, textColor, dotColor] = statusMap[status] || ['bg-gray-200', 'text-gray-600', 'bg-gray-500'];
 
   const handleMarkAsCompleted = (e) => {
     e.stopPropagation(); // prevent card navigation
     const updatedTask = { ...task, status: 'completed', isCompleted: true };
     updateTask(updatedTask);
-    window.location.reload(); // reload to reflect change (you can also lift state instead)
+    setStatus('completed');
+    // window.location.reload(); // reload to reflect change (you can also lift state instead)
   };
 
   return (
@@ -32,7 +33,7 @@ const TaskDiv = ({ task }) => {
         {/* Status Badge */}
         <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${bgColor} ${textColor} text-sm font-medium`}>
           <span className={`h-2 w-2 rounded-full ${dotColor}`} />
-          {task.status || 'Unknown'}
+          {status || 'Unknown'}
         </span>
 
         {/* Mark as Completed Button (appears on hover) */}
