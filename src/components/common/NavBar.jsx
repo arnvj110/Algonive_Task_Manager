@@ -23,9 +23,7 @@ const NavBar = () => {
      cursor-pointer
     hover:shadow-lg hover:shadow-blue-500/50 ${isHomePage ? 'scale-110' : ''}`}
     onClick={() => {
-        if(isTasksPage) {
-            navigate('/')   
-        }
+        navigate('/')
     }}
 >
   Home
@@ -39,9 +37,7 @@ const NavBar = () => {
      cursor-pointer
     hover:shadow-lg hover:shadow-blue-500/50 ${isTasksPage ? 'scale-110' : ''}`}
     onClick={() => {
-        if(isHomePage) {
-            navigate('/tasks')
-        }
+        navigate('/tasks')
         }}
 >
   Tasks

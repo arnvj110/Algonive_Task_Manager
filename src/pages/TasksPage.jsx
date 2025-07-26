@@ -5,8 +5,8 @@ import Tasks from '../components/tasks/Tasks'
 
 const TasksPage = () => {
   return (
-    <div className='bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col'>
-      <NavBar />
+    <div className='bg-gray-100 dark:bg-gray-900 flex flex-col'>
+      
       <div className='flex mt-4 '>
         <Tasks/>
       </div>

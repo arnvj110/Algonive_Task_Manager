@@ -33,8 +33,13 @@ const TaskDiv = () => {
 
 
             {/* Heading */}
-            <div className='w-[95%] h-30 flex items-center justify-center text-xl font-semibold text-gray-800 dark:text-white mb-2 rounded-md border border-gray-400 dark:border-blue-600 bg-gray-100 dark:bg-gray-700'>
+            <div className='w-[95%] h-30 flex items-center justify-center text-xl font-bold text-gray-800 dark:text-white mb-2 rounded-md border border-gray-400 dark:border-blue-600 bg-gray-100 dark:bg-gray-700 relative'>
+
                 Heading
+
+                <span className='absolute right-0 top-0 mr-2 mt-2'>
+                  P0
+                </span>
             </div>
 
 

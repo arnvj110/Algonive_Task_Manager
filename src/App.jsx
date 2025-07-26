@@ -6,6 +6,7 @@ import UpdatePage from './pages/UpdatePage'
 import DeletePage from './pages/DeletePage'
 import { ThemeProvider } from './context/ThemeContext'
 import TasksPage from './pages/TasksPage'
+import NavBar from './components/common/NavBar'
 
 function App() {
   
@@ -13,23 +14,44 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <HomePage />
+      element: <div className='bg-gray-100 dark:bg-gray-900 min-h-screen'>
+        <NavBar />
+        <HomePage />
+
+        </div>
+
   },
   {
       path: '/tasks',
-      element: <TasksPage />
+      element: <div className='bg-gray-100 dark:bg-gray-900 min-h-screen'>
+        <NavBar />
+        <TasksPage />
+
+        </div>
   },
   {
     path: '/add',
-    element: <AddPage />
+    element: <div className='bg-gray-100 dark:bg-gray-900 min-h-screen'>
+        <NavBar />
+        <AddPage />
+
+        </div>
   },
   {
     path: '/update/:taskId',
-    element: <UpdatePage />
+    element: <div className='bg-gray-100 dark:bg-gray-900 min-h-screen'>
+        <NavBar />
+        <UpdatePage />
+
+        </div>
   },
   {
     path: '/delete/:taskId',
-    element: <DeletePage />
+    element: <div className='bg-gray-100 dark:bg-gray-900 min-h-screen'>
+        <NavBar />
+        <DeletePage />
+
+        </div>
   }
 ])
 

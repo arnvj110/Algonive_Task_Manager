@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import TaskDiv from '../layout/TaskDiv';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom";
 
 const Tasks = () => {
+    const navigate = useNavigate();
     const [showFilter, setShowFilter] = useState(false);
     const [filterOptions, setFilterOptions] = useState({
         completed: false,
@@ -15,7 +17,9 @@ const Tasks = () => {
         <div className="w-full">
             <div className="p-3 mb-3 flex justify-center items-center gap-5">
                 {/* Add New Task Button */}
-                <button className="px-4 py-2 rounded-md text-base font-medium cursor-pointer transition-all duration-300
+                <button
+                onClick={()=>{navigate('/add')}}
+                className="px-4 py-2 rounded-md text-base font-medium cursor-pointer transition-all duration-300
           bg-red-400 text-white shadow-lg scale-105 hover:scale-110 hover:shadow-md
         ">Add new task</button>
                 {/* Search Input */}
