@@ -68,7 +68,7 @@ const AddPage = () => {
 
     // Redirect to the home page or any other desired route after successful submission.
     navigate('/app/tasks');
-    window.location.reload();
+    // window.location.reload();
   };
 
   const today = new Date().toISOString().split('T')[0];
